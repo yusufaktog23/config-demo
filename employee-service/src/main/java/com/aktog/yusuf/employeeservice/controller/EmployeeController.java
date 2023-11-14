@@ -13,8 +13,13 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+
     private final EmployeeService employeeService;
 
+    @GetMapping
+    public String welcome() {
+        return "WELCOME U LITTLE B!";
+    }
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }

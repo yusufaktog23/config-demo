@@ -12,6 +12,8 @@
 
    <modules>
        <module>employee-service</module>
+       <module>api-gateway</module>
+       <module>eureka-server</module>
    </modules>
 
 </project>
