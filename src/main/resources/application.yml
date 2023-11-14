@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: config-demo
-
-  jpa:
-    hibernate:
-      ddl-auto: update

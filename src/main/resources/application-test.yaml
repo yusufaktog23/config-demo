@@ -1,6 +1,0 @@
-
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/config-demo-test
-    username: testuser
-    password: test123
