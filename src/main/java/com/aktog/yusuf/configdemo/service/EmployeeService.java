@@ -25,6 +25,10 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    public void silly(){
+
+    }
+
     @SuppressWarnings("java:S6204")
     public List<EmployeeDto> getEmployeeDtos(){
         List<Employee> employees = employeeRepository.findAll();
