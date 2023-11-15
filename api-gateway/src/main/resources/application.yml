@@ -5,7 +5,7 @@ spring:
     gateway:
       routes:
       - id: employee-service
-        uri: http://localhost:8080
+        uri: http://localhost:8082
         predicates:
           - Path=/employee-service/**
         filters:
