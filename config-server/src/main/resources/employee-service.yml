@@ -1,0 +1,51 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    config:
+      enabled: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8080
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  cloud:
+    config:
+      uri: http://config-server:8888
+      username: user
+      password: 12345
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/config-demo-test
+    username: testuser
+    password: test123
+
+---
+
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    config:
+      uri: http://config-server:8888
+      username: user
+      password: 12345
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123

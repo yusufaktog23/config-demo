@@ -6,9 +6,9 @@ spring:
     hibernate:
       ddl-auto: update
 
-  cloud:
-    config:
-      enabled: false
+  config:
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
 
 eureka:
   client:
@@ -16,3 +16,22 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 8080
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import: 'optional:config-server'
+    name: ${spring.application.name}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+    import: 'optional:config-server'
+    name: ${spring.application.name}

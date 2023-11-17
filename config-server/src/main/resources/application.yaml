@@ -1,0 +1,27 @@
+
+server:
+  port: ${PORT:8888}
+  shutdown: graceful
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${user.home}/config-demo
+  security:
+    user:
+      name: ${CONFIG_SERVER_USERNAME:user}
+      password: ${CONFIG_SERVER_PASSWORD:12345}
+
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+  application:
+    name: config-server
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
