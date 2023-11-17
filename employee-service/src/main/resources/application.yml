@@ -53,17 +53,3 @@ spring:
       username: user
 
 ---
-
-spring:
-  config:
-    activate:
-      on-profile: default
-    import: 'optional:configserver:'
-    name: ${spring.application.name}
-  cloud:
-    config:
-      uri: http://config-server:8888
-      password: 12345
-      username: user
-
----
