@@ -1,21 +1,13 @@
 spring:
   application:
     name: employee-service
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-
+  cloud:
+    config:
+      password: ${CONFIG_SERVER_PASSWORD:12345}
+      username: ${CONFIG_SERVER_USERNAME:user}
   config:
     import: 'optional:configserver:'
     name: ${spring.application.name}
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8080
 
 
 ---
@@ -23,9 +15,14 @@ server:
 spring:
   config:
     activate:
-      on-profile: prod
-    import: 'optional:config-server'
+      on-profile: local
+    import: 'optional:configserver:'
     name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
 
 ---
 
@@ -33,5 +30,40 @@ spring:
   config:
     activate:
       on-profile: test
-    import: 'optional:config-server'
+    import: 'optional:configserver:'
     name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: default
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---

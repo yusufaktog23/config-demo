@@ -8,7 +8,10 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/config-demo
+          uri: https://github.com/yusufaktog23/config-demo.git
+          default-label: master
+        native:
+          search-locations: classpath:/shared
   security:
     user:
       name: ${CONFIG_SERVER_USERNAME:user}
@@ -25,3 +28,18 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+---

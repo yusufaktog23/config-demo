@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 8070
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+---
+
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: default
+
+---
