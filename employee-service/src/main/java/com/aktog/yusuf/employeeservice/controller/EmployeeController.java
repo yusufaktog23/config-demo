@@ -1,5 +1,6 @@
 package com.aktog.yusuf.employeeservice.controller;
 
+
 import com.aktog.yusuf.employeeservice.entity.Employee;
 import com.aktog.yusuf.employeeservice.entity.EmployeeDto;
 import com.aktog.yusuf.employeeservice.entity.request.CreateEmployeeRequest;
@@ -43,5 +44,10 @@ public class EmployeeController {
     public Employee getById(@PathVariable String id) {
         Employee employee = employeeService.getById(id);
         return employee;
+    }
+    @GetMapping("/admin")
+    public String getAdmin() {
+
+        return "hi admin ...";
     }
 }

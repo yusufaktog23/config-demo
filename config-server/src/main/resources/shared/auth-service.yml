@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 8071
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+---
+
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+---

@@ -12,7 +12,13 @@ spring:
             - Path=/employee-service/**
           filters:
             - StripPrefix=1
-
+            - JwtAuthenticationFilter
+        - id: auth-service
+          uri: http://localhost:8071
+          predicates:
+            - Path=/auth-service/**
+          filters:
+            - StripPrefix=1
 
 server:
   port: 8081
