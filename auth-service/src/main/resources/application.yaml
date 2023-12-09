@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    config:
+      password: ${CONFIG_SERVER_PASSWORD:12345}
+      username: ${CONFIG_SERVER_USERNAME:user}
+  config:
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import: 'optional:configserver:'
+    name: ${spring.application.name}
+  cloud:
+    config:
+      uri: http://config-server:8888
+      password: 12345
+      username: user
+
+---

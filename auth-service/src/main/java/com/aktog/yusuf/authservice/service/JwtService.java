@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,10 @@ import java.util.Map;
 public class JwtService {
 
     @Value("${jwt.expiry}")
-    private Long expiryDurationInMillis;
+    private Long expiryDurationInMs;
 
-    private final String secret = "gouEtIL5NhqqfqyrqIV3Q+JNMzhIKf+g2DPGl5Y1PLthUUKKwojW8Mjj+SMWz+Un\n";
+    @Value("${jwt.secret}")
+    private String secret;
 
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
@@ -29,7 +31,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + expiryDurationInMillis))
+                .setExpiration(new Date(System.currentTimeMillis() + expiryDurationInMs))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -66,6 +68,7 @@ public class JwtService {
 
         return userDetails.getUsername().equals(username) && expiration.after(new Date(System.currentTimeMillis()));
     }
+
 
 
 }
