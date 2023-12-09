@@ -42,9 +42,13 @@ public class JwtTokenValidator {
     }
 
     public void validateToken(String token) {
-        Jwts.parserBuilder()
+        String jwtToken = token.substring(7);
+        Date date = Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
-                .parseClaimsJws(token);
+                .parseClaimsJws(jwtToken)
+                .getBody()
+                .getExpiration();
+        System.out.println("date => " + date);
     }
 }

@@ -45,4 +45,9 @@ public class EmployeeController {
         Employee employee = employeeService.getById(id);
         return employee;
     }
+    @GetMapping("/admin")
+    public String getAdmin() {
+
+        return "hi admin ...";
+    }
 }
